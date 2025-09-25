@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "title": "React с нуля",
+    "description": "Создавай современные интерфейсы с помощью React и React-Bootstrap.",
+    "image": "https://blog.wildix.com/wp-content/uploads/2020/06/react-logo.jpg"
+  },
+  {
+    "id": 2,
+    "title": "JavaScript для начинающих",
+    "description": "Изучи основы JavaScript для динамичных веб-сайтов.",
+    "image": "https://www.pragimtech.com/wp-content/uploads/2019/03/java-script.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Python разработка",
+    "description": "Научись автоматизировать задачи и создавать приложения на Python.",
+    "image": "https://itchief.ru/assets/covers/python/introduction.png"
+  },
+  {
+    "id": 4,
+    "title": "HTML & CSS",
+    "description": "Овладей основами верстки и адаптивного дизайна.",
+    "image": "https://futureteachinstitute.com/wp-content/uploads/2023/07/html-css-beginners.jpg"
+  },
+  {
+    "id": 5,
+    "title": "Node.js Backend",
+    "description": "Построй серверные приложения на Node.js и Express.",
+    "image": "https://miro.medium.com/v2/resize:fit:1400/1*Ojh_geZ9dR6L49yO7rim1Q.jpeg"
+  },
+  {
+    "id": 6,
+    "title": "Базы данных SQL",
+    "description": "Научись работать с MySQL и PostgreSQL.",
+    "image": "https://www.mytecbits.com/wp-content/uploads/SQL.png"
+  },
+  {
+    "id": 7,
+    "title": "Data Science",
+    "description": "Основы анализа данных и машинного обучения.",
+    "image": "https://bernardmarr.com/img/What%20Really%20Is%20Data%20Science%20A%20Super%20Simple%20Explanation%20For%20Anyone.png"
+  },
+  {
+    "id": 8,
+    "title": "Docker & Kubernetes",
+    "description": "Освой контейнеризацию и оркестрацию приложений.",
+    "image": "https://contabo.com/blog/wp-content/uploads/2023/12/image-4.jpeg"
+  },
+  {
+    "id": 9,
+    "title": "Кибербезопасность",
+    "description": "Узнай основы защиты информации и тестирования на проникновение.",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPXypsGD5DsFshj1HFtnPgfeAmsO7-wD83tQ&s"
+  },
+  {
+    "id": 10,
+    "title": "UX/UI Дизайн",
+    "description": "Проектируй удобные и красивые интерфейсы.",
+    "image": "https://kvadrat.az/public/uploads/articles/66754a35bd4d0.jpg.pagespeed.ce.z3IFf4Qir1.jpg"
+  },
+  {
+    "id": 11,
+    "title": "Mobile Development",
+    "description": "Создавай приложения для Android и iOS.",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvqL-oTkaPr555gZPIqwGlPyHFv0ZAWxWr4w&s"
+  },
+  {
+    "id": 12,
+    "title": "Machine Learning",
+    "description": "Познакомься с моделями машинного обучения.",
+    "image": "https://shiftasia.com/community/content/images/2025/06/ml.png"
+  }
+]
