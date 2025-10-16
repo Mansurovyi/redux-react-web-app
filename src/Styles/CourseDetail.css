@@ -1,0 +1,41 @@
+.course-detail-container {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.course-detail-card {
+  border-radius: 12px;
+}
+
+.course-image {
+  max-height: 300px;
+  object-fit: cover;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.course-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.course-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #555;
+}
+
+.course-meta p {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.course-topics {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.course-topics li {
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}

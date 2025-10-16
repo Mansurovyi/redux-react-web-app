@@ -1,10 +1,14 @@
-import { configureStore } from '@reduxjs/toolkit';
-import coursesReducer from './coursesSlice';
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import coursesReducer from "./coursesReducer";
+import favoritesReducer from "./favoritesReducer";
+
+const rootReducer = combineReducers({
+  courses: coursesReducer,
+  favorites: favoritesReducer
+});
 
 const store = configureStore({
-  reducer: {
-    courses: coursesReducer
-  }
+  reducer: rootReducer
 });
 
 export default store;
