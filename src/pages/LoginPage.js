@@ -1,33 +1,35 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Button, Form, Container, Alert } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Button, Form, Container, Alert } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import './../Styles/Auth.css';
 
 function LoginPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const error = useSelector(state => state.auth.error);
+
+  const loginError = useSelector(state => state.auth.loginError);
   const user = useSelector(state => state.auth.user);
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleLogin = e => {
     e.preventDefault();
-    dispatch({ type: "LOGIN", payload: { email, password } });
+    dispatch({ type: 'LOGIN', payload: { email, password } });
   };
 
-  // Редирект только если есть user
+  // Редирект только при успешном логине
   useEffect(() => {
-    if (user) {
-      navigate("/"); // редирект на главную только после успешного логина
+    if (user && !loginError) {
+      navigate('/');
     }
-  }, [user, navigate]);
+  }, [user, loginError, navigate]);
 
   return (
     <Container className="auth-container">
       <h2>Вход в аккаунт</h2>
-      {error && <Alert variant="danger">{error}</Alert>}
+      {loginError && <Alert variant="danger">{loginError}</Alert>}
       <Form onSubmit={handleLogin} className="auth-form">
         <Form.Group className="mb-3">
           <Form.Label>Email</Form.Label>

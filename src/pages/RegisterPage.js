@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Form, Container, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import './../Styles/Auth.css';
 
 function RegisterPage() {
   const dispatch = useDispatch();
-  const error = useSelector(state => state.auth.error);
   const navigate = useNavigate();
+
+  const registerError = useSelector(state => state.auth.registerError);
+  const user = useSelector(state => state.auth.user);
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -15,14 +18,20 @@ function RegisterPage() {
   const handleRegister = e => {
     e.preventDefault();
     dispatch({ type: 'REGISTER', payload: { name, email, password } });
-    navigate('/'); // после регистрации можно сразу на главную
   };
 
+  // Редирект только при успешной регистрации
+  useEffect(() => {
+    if (user && !registerError) {
+      navigate('/');
+    }
+  }, [user, registerError, navigate]);
+
   return (
-    <Container>
+    <Container className="auth-container">
       <h2>Регистрация</h2>
-      {error && <Alert variant="danger">{error}</Alert>}
-      <Form onSubmit={handleRegister}>
+      {registerError && <Alert variant="danger">{registerError}</Alert>}
+      <Form onSubmit={handleRegister} className="auth-form">
         <Form.Group className="mb-3">
           <Form.Label>Имя</Form.Label>
           <Form.Control
@@ -56,10 +65,12 @@ function RegisterPage() {
           />
         </Form.Group>
 
-        <Button variant="success" type="submit">Зарегистрироваться</Button>
+        <Button variant="success" type="submit" className="w-100">
+          Зарегистрироваться
+        </Button>
       </Form>
     </Container>
   );
 }
 
-export default RegisterPage;
+export default RegisterPage
