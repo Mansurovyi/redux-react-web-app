@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import CourseCard from "./CourseCard";
 
 const PopularCourses = () => {
-  const courses = useSelector(state => state.courses.list.slice(0, 4));
+  const courses = useSelector(state => state.courses?.list?.slice(0, 4) || []);
 
   return (
     <div className="container mt-4">

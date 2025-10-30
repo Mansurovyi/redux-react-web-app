@@ -3,6 +3,7 @@ import heroImage from "../assets/Copilot_20250926_004606.png";
 import "../Styles/HomePage.css";
 import Button from "react-bootstrap/Button";
 import PopularCourses from "../components/PopularCourses";
+import { link } from "framer-motion/client";
 
 const HomePage = () => {
   return (

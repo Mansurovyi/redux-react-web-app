@@ -8,13 +8,32 @@ import { addToFavorites, removeFromFavorites } from "../store/favoritesReducer";
 
 const CourseDetail = () => {
   const { id } = useParams();
-  const course = useSelector(state => state.courses.list.find(c => c.id === parseInt(id)));
-  const favorites = useSelector(state => state.favorites);
   const dispatch = useDispatch();
 
+  const course = useSelector(state =>
+    state.courses.list.find(c => c.id === parseInt(id))
+  );
+
+  const user = useSelector(state => state.auth.user);
+  const favorites = useSelector(state => state.favorites || []);
+  
   if (!course) return <p className="text-center mt-4">Курс не найден</p>;
 
-  const isFavorite = favorites.some(item => item.id === course.id);
+  // Проверяем, добавлен ли курс в избранное текущего пользователя
+  const isFavorite = user ? favorites.some(item => item?.id === course?.id) : false;
+
+  const handleAdd = () => {
+    if (!user) {
+      alert("Добавлять в избранное можно только после авторизации!");
+      return;
+    }
+    dispatch(addToFavorites({ course, userEmail: user.email }));
+  };
+
+  const handleRemove = () => {
+    if (!user) return;
+    dispatch(removeFromFavorites({ course, userEmail: user.email }));
+  };
 
   return (
     <div className="course-detail-container container mt-5">
@@ -43,25 +62,27 @@ const CourseDetail = () => {
                 </ul>
               </div>
             </Card.Body>
-            <div className="mt-auto text-center">
-              {isFavorite ? (
-                <Button
-                  variant="danger"
-                  size="lg"
-                  onClick={() => dispatch(removeFromFavorites(course))}
-                >
-                  Удалить из избранного
-                </Button>
-              ) : (
-                <Button
-                  variant="success"
-                  size="lg"
-                  onClick={() => dispatch(addToFavorites(course))}
-                >
-                  Добавить в избранное
-                </Button>
-              )}
-            </div>
+            {user && (
+              <div className="mt-auto text-center">
+                {isFavorite ? (
+                  <Button
+                    variant="danger"
+                    size="lg"
+                    onClick={handleRemove}
+                  >
+                    Удалить из избранного
+                  </Button>
+                ) : (
+                  <Button
+                    variant="success"
+                    size="lg"
+                    onClick={handleAdd}
+                  >
+                    Добавить в избранное
+                  </Button>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </Card>
