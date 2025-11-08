@@ -2,13 +2,16 @@ import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import coursesReducer from "./coursesReducer";
 import authReducer from "./authReducer";
 import favoritesReducer from "./favoritesReducer";
+import bookingReducer from "./bookingSlice";
 import authMiddleware from "./middleware/authMiddleware";
 import regMiddleware from "./middleware/regMiddleware";
+
 
 const rootReducer = combineReducers({
   courses: coursesReducer,
   auth: authReducer,
   favorites: favoritesReducer,
+  booking: bookingReducer,
 });
 
 const store = configureStore({

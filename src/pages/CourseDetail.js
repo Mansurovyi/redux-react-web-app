@@ -1,27 +1,34 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import "../Styles/CourseDetail.css";
 import { addToFavorites, removeFromFavorites } from "../store/favoritesReducer";
+import CourseTrainings from "../components/CourseTrainings";
 
 const CourseDetail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+  // Находим курс по id
   const course = useSelector(state =>
     state.courses.list.find(c => c.id === parseInt(id))
   );
 
+  // Авторизованный пользователь
   const user = useSelector(state => state.auth.user);
-  const favorites = useSelector(state => state.favorites || []);
-  
+
+  // Избранное конкретного пользователя
+  const favorites = useSelector(state => state.favorites[user?.email] || []);
+
   if (!course) return <p className="text-center mt-4">Курс не найден</p>;
 
-  // Проверяем, добавлен ли курс в избранное текущего пользователя
+  // Проверка, добавлен ли курс в избранное текущего пользователя
   const isFavorite = user ? favorites.some(item => item?.id === course?.id) : false;
 
+  // Добавить в избранное
   const handleAdd = () => {
     if (!user) {
       alert("Добавлять в избранное можно только после авторизации!");
@@ -30,9 +37,19 @@ const CourseDetail = () => {
     dispatch(addToFavorites({ course, userEmail: user.email }));
   };
 
+  // Удалить из избранного
   const handleRemove = () => {
     if (!user) return;
     dispatch(removeFromFavorites({ course, userEmail: user.email }));
+  };
+
+  // Переход на страницу бронирования
+  const handleBooking = () => {
+    if (!user) {
+      alert("Записаться на тренинг можно только после авторизации!");
+      return;
+    }
+    navigate(`/book/${course.id}`);
   };
 
   return (
@@ -49,9 +66,7 @@ const CourseDetail = () => {
           <div className="col-md-7 d-flex flex-column">
             <Card.Body>
               <Card.Title className="course-title">{course.title}</Card.Title>
-              <Card.Text className="course-description">
-                {course.details}
-              </Card.Text>
+              <Card.Text className="course-description">{course.details}</Card.Text>
               <div className="course-meta mb-3">
                 <p><strong>Продолжительность:</strong> {course.duration}</p>
                 <p><strong>Темы курса:</strong></p>
@@ -62,27 +77,29 @@ const CourseDetail = () => {
                 </ul>
               </div>
             </Card.Body>
-            {user && (
-              <div className="mt-auto text-center">
-                {isFavorite ? (
-                  <Button
-                    variant="danger"
-                    size="lg"
-                    onClick={handleRemove}
-                  >
-                    Удалить из избранного
-                  </Button>
-                ) : (
-                  <Button
-                    variant="success"
-                    size="lg"
-                    onClick={handleAdd}
-                  >
-                    Добавить в избранное
-                  </Button>
-                )}
-              </div>
-            )}
+
+            <div className="mt-auto text-center d-flex flex-column gap-2">
+              {user ? (
+                <>
+                  {isFavorite ? (
+                    <Button variant="danger" size="lg" onClick={handleRemove}>
+                      Удалить из избранного
+                    </Button>
+                  ) : (
+                    <Button variant="success" size="lg" onClick={handleAdd}>
+                      Добавить в избранное
+                    </Button>
+                  )}
+                </>
+              ) : (
+                <p className="text-muted mt-2">
+                  Войдите, чтобы добавлять в избранное и записываться на тренинги
+                </p>
+              )}
+            </div>
+
+            {/* Список тренингов для курса */}
+            <CourseTrainings courseId={course.id} />
           </div>
         </div>
       </Card>

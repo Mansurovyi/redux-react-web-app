@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Container, Nav, NavDropdown, Form, Button } from 'react-bootstrap';
+import { Navbar, Container, Nav, NavDropdown, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -29,10 +29,14 @@ function Header() {
               <NavDropdown.Item as={Link} to="/contacts">Контакты</NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          <div className="d-flex gap-2">
+
+          <div className="d-flex gap-2 align-items-center">
             {isAuthenticated ? (
               <>
-                <span className="text-light align-self-center">Привет, {user.name}!</span>
+                <span className="text-light">Привет, {user.name}!</span>
+                <Button as={Link} to="/bookings" variant="warning">
+                  Мои бронирования
+                </Button>
                 <Button variant="danger" onClick={handleLogout}>Выйти</Button>
               </>
             ) : (
