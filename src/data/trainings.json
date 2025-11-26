@@ -2,7 +2,7 @@
   {
     "id": 1,
     "courseId": 1,
-    "title": "React Bootcamp - Утренний поток",
+    "title": "React Bootcamp - Начинающий",
     "date": "2025-11-15",
     "time": "10:00",
     "location": "г. Бишкек, ул. Чуй 123",
@@ -11,7 +11,7 @@
   {
     "id": 2,
     "courseId": 1,
-    "title": "React Bootcamp - Вечерний поток",
+    "title": "React Bootcamp - Продолжающий",
     "date": "2025-11-16",
     "time": "18:00",
     "location": "г. Бишкек, ул. Чуй 123",
@@ -20,7 +20,7 @@
   {
     "id": 3,
     "courseId": 2,
-    "title": "JavaScript Basics - Утренний поток",
+    "title": "JavaScript Basics - Начинающий",
     "date": "2025-11-20",
     "time": "10:00",
     "location": "г. Бишкек, ул. Московская 45",
@@ -29,7 +29,7 @@
   {
     "id": 4,
     "courseId": 2,
-    "title": "JavaScript Basics - Вечерний поток",
+    "title": "JavaScript Basics - Продолжающий",
     "date": "2025-11-21",
     "time": "18:00",
     "location": "г. Бишкек, ул. Московская 45",
@@ -38,7 +38,7 @@
   {
     "id": 5,
     "courseId": 3,
-    "title": "Python Development - Утренний поток",
+    "title": "Python Development - Начинающий",
     "date": "2025-11-25",
     "time": "10:00",
     "location": "г. Бишкек, ул. Токтогула 77",
@@ -47,7 +47,7 @@
   {
     "id": 6,
     "courseId": 3,
-    "title": "Python Development - Вечерний поток",
+    "title": "Python Development - Продолжающий",
     "date": "2025-11-26",
     "time": "18:00",
     "location": "г. Бишкек, ул. Токтогула 77",
@@ -56,7 +56,7 @@
   {
     "id": 7,
     "courseId": 4,
-    "title": "HTML & CSS - Утренний поток",
+    "title": "HTML & CSS - Начинающий",
     "date": "2025-11-28",
     "time": "10:00",
     "location": "г. Бишкек, ул. Ибраимова 10",
@@ -65,7 +65,7 @@
   {
     "id": 8,
     "courseId": 4,
-    "title": "HTML & CSS - Вечерний поток",
+    "title": "HTML & CSS - Продолжающий",
     "date": "2025-11-29",
     "time": "18:00",
     "location": "г. Бишкек, ул. Ибраимова 10",
@@ -74,7 +74,7 @@
   {
     "id": 9,
     "courseId": 5,
-    "title": "Node.js Backend - Утренний поток",
+    "title": "Node.js Backend - Начинающий",
     "date": "2025-12-01",
     "time": "10:00",
     "location": "г. Бишкек, ул. Ленина 50",
@@ -83,7 +83,7 @@
   {
     "id": 10,
     "courseId": 5,
-    "title": "Node.js Backend - Вечерний поток",
+    "title": "Node.js Backend - Продолжающий",
     "date": "2025-12-02",
     "time": "18:00",
     "location": "г. Бишкек, ул. Ленина 50",
@@ -92,7 +92,7 @@
   {
     "id": 11,
     "courseId": 6,
-    "title": "SQL Databases - Утренний поток",
+    "title": "SQL Databases - Начинающий",
     "date": "2025-12-05",
     "time": "10:00",
     "location": "г. Бишкек, ул. Ахунбаева 30",
@@ -101,7 +101,7 @@
   {
     "id": 12,
     "courseId": 6,
-    "title": "SQL Databases - Вечерний поток",
+    "title": "SQL Databases - Продолжающий",
     "date": "2025-12-06",
     "time": "18:00",
     "location": "г. Бишкек, ул. Ахунбаева 30",
@@ -110,7 +110,7 @@
   {
     "id": 13,
     "courseId": 7,
-    "title": "Data Science - Утренний поток",
+    "title": "Data Science - Начинающий",
     "date": "2025-12-08",
     "time": "10:00",
     "location": "г. Бишкек, ул. Панфилова 12",
@@ -119,7 +119,7 @@
   {
     "id": 14,
     "courseId": 7,
-    "title": "Data Science - Вечерний поток",
+    "title": "Data Science - Продолжающий",
     "date": "2025-12-09",
     "time": "18:00",
     "location": "г. Бишкек, ул. Панфилова 12",
@@ -128,7 +128,7 @@
   {
     "id": 15,
     "courseId": 8,
-    "title": "Docker & Kubernetes - Утренний поток",
+    "title": "Docker & Kubernetes - Начинающий",
     "date": "2025-12-11",
     "time": "10:00",
     "location": "г. Бишкек, ул. Киевская 22",
@@ -137,7 +137,7 @@
   {
     "id": 16,
     "courseId": 8,
-    "title": "Docker & Kubernetes - Вечерний поток",
+    "title": "Docker & Kubernetes - Продолжающий",
     "date": "2025-12-12",
     "time": "18:00",
     "location": "г. Бишкек, ул. Киевская 22",
@@ -146,7 +146,7 @@
   {
     "id": 17,
     "courseId": 9,
-    "title": "Cybersecurity - Утренний поток",
+    "title": "Cybersecurity - Начинающий",
     "date": "2025-12-15",
     "time": "10:00",
     "location": "г. Бишкек, ул. Ибраимова 55",
@@ -155,7 +155,7 @@
   {
     "id": 18,
     "courseId": 9,
-    "title": "Cybersecurity - Вечерний поток",
+    "title": "Cybersecurity - Продолжающий",
     "date": "2025-12-16",
     "time": "18:00",
     "location": "г. Бишкек, ул. Ибраимова 55",
@@ -164,7 +164,7 @@
   {
     "id": 19,
     "courseId": 10,
-    "title": "UX/UI Design - Утренний поток",
+    "title": "UX/UI Design - Начинающий",
     "date": "2025-12-18",
     "time": "10:00",
     "location": "г. Бишкек, ул. Лермонтова 18",
@@ -173,7 +173,7 @@
   {
     "id": 20,
     "courseId": 10,
-    "title": "UX/UI Design - Вечерний поток",
+    "title": "UX/UI Design - Продолжающий",
     "date": "2025-12-19",
     "time": "18:00",
     "location": "г. Бишкек, ул. Лермонтова 18",
@@ -182,7 +182,7 @@
   {
     "id": 21,
     "courseId": 11,
-    "title": "Mobile Development - Утренний поток",
+    "title": "Mobile Development - Начинающий",
     "date": "2025-12-22",
     "time": "10:00",
     "location": "г. Бишкек, ул. Токомбаева 7",
@@ -191,7 +191,7 @@
   {
     "id": 22,
     "courseId": 11,
-    "title": "Mobile Development - Вечерний поток",
+    "title": "Mobile Development - Продолжающий",
     "date": "2025-12-23",
     "time": "18:00",
     "location": "г. Бишкек, ул. Токомбаева 7",
@@ -200,7 +200,7 @@
   {
     "id": 23,
     "courseId": 12,
-    "title": "Machine Learning - Утренний поток",
+    "title": "Machine Learning - Начинающий",
     "date": "2025-12-25",
     "time": "10:00",
     "location": "г. Бишкек, ул. Токтогула 88",
@@ -209,7 +209,7 @@
   {
     "id": 24,
     "courseId": 12,
-    "title": "Machine Learning - Вечерний поток",
+    "title": "Machine Learning - Продолжающий",
     "date": "2025-12-26",
     "time": "18:00",
     "location": "г. Бишкек, ул. Токтогула 88",

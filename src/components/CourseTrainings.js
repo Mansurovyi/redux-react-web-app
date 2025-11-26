@@ -1,45 +1,44 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { bookTraining, cancelBooking } from "../store/bookingSlice";
-import Button from "react-bootstrap/Button";
+import { Button, Card } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const CourseTrainings = ({ courseId }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector(state => state.auth.user);
+
   const trainings = useSelector(state =>
     state.booking.trainings.filter(t => t.courseId === courseId)
   );
-  const bookings = useSelector(state => state.booking.bookings);
-  const userBookings = user && bookings[user.email] ? bookings[user.email] : [];
+
+  if (trainings.length === 0) return <p>Тренингов пока нет</p>;
 
   return (
     <div className="mt-4">
-      <h4>Оффлайн тренинги по курсу</h4>
-      {trainings.length === 0 && <p>Тренингов пока нет</p>}
-      {trainings.map(t => (
-        <div key={t.id} style={{ border: "1px solid #ccc", padding: "10px", marginBottom: "10px" }}>
-          <p><strong>{t.title}</strong></p>
-          <p>Дата: {t.date} Время: {t.time}</p>
-          <p>Локация: {t.location}</p>
-          <p>Свободные места: {t.availableSeats}</p>
-          {user ? (
-            userBookings.includes(t.id) ? (
-              <Button variant="danger" onClick={() => dispatch(cancelBooking({ userEmail: user.email, trainingId: t.id }))}>
-                Отменить бронирование
-              </Button>
-            ) : (
-              <Button
-                variant="success"
-                disabled={t.availableSeats === 0}
-                onClick={() => dispatch(bookTraining({ userEmail: user.email, trainingId: t.id }))}
-              >
-                Забронировать
-              </Button>
-            )
-          ) : (
-            <p className="text-muted">Войдите, чтобы забронировать тренинг</p>
-          )}
-        </div>
+      <h4>Тренинги по этому курсу</h4>
+      {trainings.map(training => (
+        <Card key={training.id} className="mb-2">
+          <Card.Body className="d-flex justify-content-between align-items-center">
+            <div>
+              <Card.Title>{training.title}</Card.Title>
+              <Card.Text>Оставшиеся места: {training.availableSeats}</Card.Text>
+            </div>
+            <Button
+              variant="primary"
+              disabled={!user || training.availableSeats === 0}
+              onClick={() => {
+                if (!user) {
+                  alert("Записаться на тренинг можно только после авторизации!");
+                  return;
+                }
+                navigate(`/book/${training.id}`);
+              }}
+            >
+              {training.availableSeats === 0 ? "Мест нет" : "Записаться"}
+            </Button>
+          </Card.Body>
+        </Card>
       ))}
     </div>
   );

@@ -6,7 +6,6 @@ import bookingReducer from "./bookingSlice";
 import authMiddleware from "./middleware/authMiddleware";
 import regMiddleware from "./middleware/regMiddleware";
 
-
 const rootReducer = combineReducers({
   courses: coursesReducer,
   auth: authReducer,
@@ -16,8 +15,7 @@ const rootReducer = combineReducers({
 
 const store = configureStore({
   reducer: rootReducer,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(authMiddleware, regMiddleware),
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(authMiddleware, regMiddleware)
 });
 
 export default store;
