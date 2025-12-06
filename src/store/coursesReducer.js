@@ -4,7 +4,7 @@ import coursesData from "../data/courses.json";
 const coursesSlice = createSlice({
   name: "courses",
   initialState: { list: coursesData || [] },
-  reducers: {},
+  reducers: {}
 });
 
 export default coursesSlice.reducer;

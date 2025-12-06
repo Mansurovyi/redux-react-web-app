@@ -10,9 +10,9 @@ const CourseCard = ({ course }) => {
   const navigate = useNavigate();
 
   const user = useSelector(state => state.auth.user);
-  const favorites = useSelector(state => state.favorites || []);
+  const favorites = useSelector(state => state.favorites?.[user?.email] || []);
 
-  // безопасно проверяем, добавлен ли курс в избранное текущего пользователя
+  // проверка, добавлен ли курс в избранное текущего пользователя
   const isFavorite = user ? favorites.some(item => item?.id === course?.id) : false;
 
   const handleAdd = () => {
@@ -43,15 +43,38 @@ const CourseCard = ({ course }) => {
       <Card.Body className="d-flex flex-column">
         <Card.Title>{title}</Card.Title>
         <Card.Text className="flex-grow-1">{description}</Card.Text>
-        {user && (
-          <div className="d-flex flex-column gap-2">
-            <Button
-              variant="primary"
-              onClick={() => course?.id && navigate(`/courses/${course.id}`)}
-            >
-              Подробнее
-            </Button>
-            {isFavorite ? (
+
+        {/* Показываем категории курса */}
+        {course.categories && (
+          <div className="mb-2">
+            {course.categories.map(cat => (
+              <span
+                key={cat}
+                style={{
+                  display: "inline-block",
+                  background: "#f0f0f0",
+                  borderRadius: "12px",
+                  padding: "2px 8px",
+                  marginRight: "5px",
+                  fontSize: "12px"
+                }}
+              >
+                {cat}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {/* Кнопки */}
+        <div className="d-flex flex-column gap-2">
+          <Button
+            variant="primary"
+            onClick={() => course?.id && navigate(`/courses/${course.id}`)}
+          >
+            Подробнее
+          </Button>
+          {user && (
+            isFavorite ? (
               <Button variant="danger" onClick={handleRemove}>
                 Удалить из избранного
               </Button>
@@ -59,9 +82,9 @@ const CourseCard = ({ course }) => {
               <Button variant="success" onClick={handleAdd}>
                 Добавить в избранное
               </Button>
-            )}
-          </div>
-        )}
+            )
+          )}
+        </div>
       </Card.Body>
     </Card>
   );

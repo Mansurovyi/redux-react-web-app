@@ -11,7 +11,6 @@ import MyBookingsPage from './pages/MyBookingsPage';
 import TrainingsList from './pages/TrainingsList';
 import BookingPage from './pages/BookingPage';
 
-
 function App() {
   return (
     <Router>
