@@ -1,45 +1,64 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import { useSelector } from "react-redux";
-import CourseCard from "../components/CourseCard";
 import { Container, Form } from "react-bootstrap";
+import CourseCard from "../components/CourseCard";
+import { selectVisibleCourses } from "../selectors/coursesSelectors";
 
-const CoursesList = () => {
-  const courses = useSelector(state => state.courses.list);
+const CoursesList = memo(() => {
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("All");
+  const [sort, setSort] = useState("");
 
-  // Получаем все уникальные категории для фильтра
-  const allCategories = [...new Set(courses.flatMap(c => c.categories))];
+  const courses = useSelector(state =>
+    selectVisibleCourses(state, search, category, sort)
+  );
 
-  const [selectedCategory, setSelectedCategory] = useState("All");
-
-  const filteredCourses =
-    selectedCategory === "All"
-      ? courses
-      : courses.filter(course => course.categories.includes(selectedCategory));
+  const allCategories = useSelector(state =>
+    [...new Set(state.courses.list.flatMap(c => c.categories))]
+  );
 
   return (
     <Container className="mt-4">
       <h2 className="text-center mb-4">Все курсы</h2>
 
-      <Form.Group className="mb-3">
-        <Form.Label>Фильтр по категории:</Form.Label>
-        <Form.Select
-          value={selectedCategory}
-          onChange={e => setSelectedCategory(e.target.value)}
-        >
-          <option value="All">Все</option>
-          {allCategories.map(cat => (
-            <option key={cat} value={cat}>{cat}</option>
-          ))}
-        </Form.Select>
-      </Form.Group>
+      {/*  Поиск */}
+      <Form.Control
+        className="mb-3"
+        placeholder="Поиск курса..."
+        value={search}
+        onChange={e => setSearch(e.target.value)}
+      />
+
+      {/* Фильтр */}
+      <Form.Select
+        className="mb-3"
+        value={category}
+        onChange={e => setCategory(e.target.value)}
+      >
+        <option value="All">Все категории</option>
+        {allCategories.map(cat => (
+          <option key={cat} value={cat}>{cat}</option>
+        ))}
+      </Form.Select>
+
+      {/* Сортировка */}
+      <Form.Select
+        className="mb-4"
+        value={sort}
+        onChange={e => setSort(e.target.value)}
+      >
+        <option value="">Без сортировки</option>
+        <option value="AZ">По названию A–Z</option>
+        <option value="ZA">По названию Z–A</option>
+      </Form.Select>
 
       <div className="d-flex flex-wrap justify-content-center">
-        {filteredCourses.map(course => (
+        {courses.map(course => (
           <CourseCard key={course.id} course={course} />
         ))}
       </div>
     </Container>
   );
-};
+});
 
 export default CoursesList;

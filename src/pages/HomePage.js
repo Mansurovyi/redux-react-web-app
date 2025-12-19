@@ -4,6 +4,7 @@ import "../Styles/HomePage.css";
 import Button from "react-bootstrap/Button";
 import PopularCourses from "../components/PopularCourses";
 import { link } from "framer-motion/client";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   return (
@@ -16,7 +17,7 @@ const HomePage = () => {
         <div className="hero-content">
           <h1 className="mb-3">Добро пожаловать в Онлайн Курсы</h1>
           <p className="mb-4">Учись современным технологиям и прокачивай навыки прямо из дома</p>
-          <Button variant="success" size="lg">Записаться на курс</Button>
+          <Button as={Link} to="/courses" variant="success" size="lg"> Записаться на курс </Button>
         </div>
       </div>
 

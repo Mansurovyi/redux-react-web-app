@@ -1,33 +1,27 @@
-import React from 'react';
-import { Navbar, Container, Nav, NavDropdown, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { memo, useCallback } from "react";
+import { Navbar, Container, Nav, NavDropdown, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
-function Header() {
+const Header = memo(() => {
   const { user, isAuthenticated } = useSelector(state => state.auth);
   const dispatch = useDispatch();
 
-  const handleLogout = () => {
-    dispatch({ type: 'LOGOUT' });
-  };
+  const handleLogout = useCallback(() => {
+    dispatch({ type: "LOGOUT" });
+  }, [dispatch]);
 
   return (
     <Navbar expand="lg" bg="dark" variant="dark" sticky="top">
       <Container fluid>
         <Navbar.Brand as={Link} to="/">Онлайн Курсы</Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">
+
+        <Navbar.Toggle />
+        <Navbar.Collapse>
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/">Главная</Nav.Link>
             <Nav.Link as={Link} to="/courses">Курсы</Nav.Link>
             <Nav.Link as={Link} to="/favorites">Избранное</Nav.Link>
-            <Nav.Link as={Link} to="/about">О нас</Nav.Link>
-            <NavDropdown title="Дополнительно" id="navbarScrollingDropdown">
-              <NavDropdown.Item as={Link} to="/reviews">Отзывы</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/blog">Блог</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item as={Link} to="/contacts">Контакты</NavDropdown.Item>
-            </NavDropdown>
           </Nav>
 
           <div className="d-flex gap-2 align-items-center">
@@ -37,12 +31,18 @@ function Header() {
                 <Button as={Link} to="/bookings" variant="warning">
                   Мои бронирования
                 </Button>
-                <Button variant="danger" onClick={handleLogout}>Выйти</Button>
+                <Button variant="danger" onClick={handleLogout}>
+                  Выйти
+                </Button>
               </>
             ) : (
               <>
-                <Button as={Link} to="/login" variant="outline-light">Войти</Button>
-                <Button as={Link} to="/register" variant="success">Регистрация</Button>
+                <Button as={Link} to="/login" variant="outline-light">
+                  Войти
+                </Button>
+                <Button as={Link} to="/register" variant="success">
+                  Регистрация
+                </Button>
               </>
             )}
           </div>
@@ -50,6 +50,6 @@ function Header() {
       </Container>
     </Navbar>
   );
-}
+});
 
 export default Header;

@@ -1,32 +1,40 @@
-import React from "react";
+import React, { memo, useCallback, useMemo } from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { addToFavorites, removeFromFavorites } from "../store/favoritesReducer";
 import { useNavigate } from "react-router-dom";
 
-const CourseCard = ({ course }) => {
+const CourseCard = memo(({ course }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const user = useSelector(state => state.auth.user);
-  const favorites = useSelector(state => state.favorites?.[user?.email] || []);
+  const favorites = useSelector(
+    state => state.favorites?.[user?.email] || []
+  );
 
-  // проверка, добавлен ли курс в избранное текущего пользователя
-  const isFavorite = user ? favorites.some(item => item?.id === course?.id) : false;
+  const isFavorite = useMemo(() => {
+    if (!user) return false;
+    return favorites.some(item => item?.id === course?.id);
+  }, [favorites, user, course?.id]);
 
-  const handleAdd = () => {
+  const handleAdd = useCallback(() => {
     if (!user) {
       alert("Добавлять в избранное можно только после авторизации!");
       return;
     }
     dispatch(addToFavorites({ course, userEmail: user.email }));
-  };
+  }, [dispatch, user, course]);
 
-  const handleRemove = () => {
+  const handleRemove = useCallback(() => {
     if (!user) return;
     dispatch(removeFromFavorites({ course, userEmail: user.email }));
-  };
+  }, [dispatch, user, course]);
+
+  const goToDetails = useCallback(() => {
+    if (course?.id) navigate(`/courses/${course.id}`);
+  }, [navigate, course?.id]);
 
   const title = course?.title || "Без названия";
   const description = course?.description || "Описание недоступно";
@@ -38,13 +46,13 @@ const CourseCard = ({ course }) => {
         variant="top"
         src={image}
         style={{ cursor: "pointer" }}
-        onClick={() => course?.id && navigate(`/courses/${course.id}`)}
+        onClick={goToDetails}
       />
+
       <Card.Body className="d-flex flex-column">
         <Card.Title>{title}</Card.Title>
         <Card.Text className="flex-grow-1">{description}</Card.Text>
 
-        {/* Показываем категории курса */}
         {course.categories && (
           <div className="mb-2">
             {course.categories.map(cat => (
@@ -56,7 +64,7 @@ const CourseCard = ({ course }) => {
                   borderRadius: "12px",
                   padding: "2px 8px",
                   marginRight: "5px",
-                  fontSize: "12px"
+                  fontSize: "12px",
                 }}
               >
                 {cat}
@@ -65,16 +73,13 @@ const CourseCard = ({ course }) => {
           </div>
         )}
 
-        {/* Кнопки */}
         <div className="d-flex flex-column gap-2">
-          <Button
-            variant="primary"
-            onClick={() => course?.id && navigate(`/courses/${course.id}`)}
-          >
+          <Button variant="primary" onClick={goToDetails}>
             Подробнее
           </Button>
-          {user && (
-            isFavorite ? (
+
+          {user &&
+            (isFavorite ? (
               <Button variant="danger" onClick={handleRemove}>
                 Удалить из избранного
               </Button>
@@ -82,12 +87,11 @@ const CourseCard = ({ course }) => {
               <Button variant="success" onClick={handleAdd}>
                 Добавить в избранное
               </Button>
-            )
-          )}
+            ))}
         </div>
       </Card.Body>
     </Card>
   );
-};
+});
 
 export default CourseCard;
