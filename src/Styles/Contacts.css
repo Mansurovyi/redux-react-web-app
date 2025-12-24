@@ -1,0 +1,41 @@
+.contacts-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0d1117, #161b22);
+  padding: 80px 0;
+}
+
+.contacts-container {
+  max-width: 1100px;
+}
+
+.contacts-info {
+  background: #161b22;
+  border-radius: 16px;
+  padding: 30px;
+  color: #fff;
+  height: 100%;
+}
+
+.contacts-info h2 {
+  margin-bottom: 20px;
+}
+
+.contacts-info p {
+  font-size: 16px;
+  opacity: 0.85;
+}
+
+.contacts-form {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 30px;
+}
+
+.contacts-form h2 {
+  margin-bottom: 20px;
+}
+
+.contacts-form input,
+.contacts-form textarea {
+  border-radius: 10px;
+}

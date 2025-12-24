@@ -10,6 +10,9 @@ import RegisterPage from './pages/RegisterPage';
 import MyBookingsPage from './pages/MyBookingsPage';
 import TrainingsList from './pages/TrainingsList';
 import BookingPage from './pages/BookingPage';
+import About from "./pages/About";
+import Contacts from "./pages/Contacts";
+
 
 function App() {
   return (
@@ -27,6 +30,8 @@ function App() {
             <Route path="/bookings" element={<MyBookingsPage />} />
             <Route path="/trainings" element={<TrainingsList />} />
             <Route path="/book/:id" element={<BookingPage />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contacts" element={<Contacts />} />
           </Routes>
         </main>
         <Footer />

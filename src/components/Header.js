@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from "react";
-import { Navbar, Container, Nav, NavDropdown, Button } from "react-bootstrap";
+import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -22,6 +22,8 @@ const Header = memo(() => {
             <Nav.Link as={Link} to="/">Главная</Nav.Link>
             <Nav.Link as={Link} to="/courses">Курсы</Nav.Link>
             <Nav.Link as={Link} to="/favorites">Избранное</Nav.Link>
+            <Nav.Link as={Link} to="/about">О нас</Nav.Link>
+            <Nav.Link as={Link} to="/contacts">Контакты</Nav.Link>
           </Nav>
 
           <div className="d-flex gap-2 align-items-center">
